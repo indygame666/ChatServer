@@ -10,6 +10,9 @@ namespace DedicatedServer
     {
         public static void WelcomeReceivedFromPlayer(int clientID, Packet packet)
         {
+            ///Save NicknameInfo
+            string oldNickname = Server._clientDictionary[clientID]._nickname;
+
             ///Read client data
             int id = packet.ReadInt();
             int colorID = packet.ReadInt();
@@ -17,19 +20,25 @@ namespace DedicatedServer
 
             Console.WriteLine($"{Server._clientDictionary[clientID].tcp._clientSocket.Client.RemoteEndPoint} connected as {clientID} ID player with colorID: {colorID} and nickname: {nickname}");
 
-            ///send current relevant data to connected player 
-            ServerSendManager.InitClientData(clientID);
-
             ///set players data (in case if player changed nickname or color while entering again)
             Server._clientDictionary[clientID].SetNickName(nickname);
             Server._clientDictionary[clientID].SetColorId(colorID);
             Server._clientDictionary[clientID].SetStatus("(online)");
 
-            ////UpdatingClientList
+            ///send current relevant data to connected player 
+            ServerSendManager.InitClientData(clientID);
+
+            ///UpdatingClientList
             ServerSendManager.UpdateClientList(clientID, nickname, colorID, "(online)");
 
+            ///Notification about nickname changes
+            if (oldNickname != nickname)
+            {
+                ServerSendManager.SendServerMessage($"[{clientID}] changed his nickname to {nickname}");
+            }
+
             ///Sending server notifications to all player
-            ServerSendManager.SendServerMessage($"Player {nickname} connected to the server");
+            ServerSendManager.SendServerMessage($"[{clientID}] {nickname} connected to the server");
 
         }
 

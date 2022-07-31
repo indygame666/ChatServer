@@ -31,7 +31,6 @@ namespace DedicatedServer
             if (_nickname != nickname)
             {
                 _nickname = nickname;
-                ServerSendManager.SendServerMessage($"Player with ID:{_id} changed his name to {nickname}");
             }
         }
 
@@ -172,7 +171,7 @@ namespace DedicatedServer
         {
             Console.WriteLine($"{tcp._clientSocket.Client.RemoteEndPoint} has just disconnected...");
             tcp.Disconnect();
-            ServerSendManager.SendServerMessage($"Player {_nickname} disconnected from the server");
+            ServerSendManager.SendServerMessage($"[{_id}] {_nickname} disconnected from the server");
             ServerSendManager.UpdateClientList(_id, _nickname, _colorID, "(offline)");
             
         }

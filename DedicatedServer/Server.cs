@@ -61,7 +61,6 @@ namespace DedicatedServer
 
         private static void InitServerData()
         {
-
             _packetHandlerDictionary = new Dictionary<int, PacketHandler>()
             {
                 {
