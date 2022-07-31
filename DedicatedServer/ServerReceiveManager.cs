@@ -32,7 +32,7 @@ namespace DedicatedServer
             ServerSendManager.UpdateClientList(clientID, nickname, colorID, "(online)");
 
             ///Notification about nickname changes
-            if (oldNickname != nickname)
+            if (oldNickname != null && oldNickname != nickname)
             {
                 ServerSendManager.SendServerMessage($"[{clientID}] changed his nickname to {nickname}");
             }
