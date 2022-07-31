@@ -27,22 +27,6 @@ namespace DedicatedServer
             _tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
             Console.WriteLine($"Incoming connection: {client.Client.RemoteEndPoint}");
 
-            /*    for (int i = 1; i <= _playersOnServer; i++)
-                {
-                    if (_clientDictionary[i].tcp._clientSocket == null)
-                    {
-                        _clientDictionary[i].tcp.Connect(client);
-                        Console.WriteLine($"{client.Client.RemoteEndPoint} successfully connected");
-                        return;
-                    }
-                }
-            */
-
-            /*    _clientDictionary.Add(_playersOnServer, new Client(_playersOnServer));
-                _clientDictionary[_playersOnServer].tcp.Connect(client);
-                Console.WriteLine($"{client.Client.RemoteEndPoint} successfully connected");
-                _playersOnServer++;
-                Console.WriteLine($"Players on server: {_playersOnServer}");*/
 
             for (int i = 0; i < _playersCount; i++)
             {
@@ -77,10 +61,6 @@ namespace DedicatedServer
 
         private static void InitServerData()
         {
-            /*     for (int i = 0; i <= _playersCount; i++)
-                 {
-                     _clientDictionary.Add(i, new Client(i));
-                 }*/
 
             _packetHandlerDictionary = new Dictionary<int, PacketHandler>()
             {

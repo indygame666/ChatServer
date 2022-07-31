@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DedicatedServer
 {
+    /// TCP PACKET SENDER CLASS
     class ServerSendManager
     {
         public static void SendData(int clientID, Packet messagePacket)
@@ -85,18 +86,5 @@ namespace DedicatedServer
                 SendDataToAll(packet);
             }
         }
-
-        /*    public static void UpdateChatList(int id, string nickname, int colorID, string status)
-            {
-                using (Packet packet = new Packet((int)ServerPackets.clientList))
-                {
-                    packet.Write(id);
-                    packet.Write(nickname);
-                    packet.Write(colorID);
-                    packet.Write(status);
-
-                    SendDataToAll(packet);
-                }
-            }*/
     }
 }

@@ -33,11 +33,6 @@ namespace DedicatedServer
                     GameLogic.Update();
                     loopTime = loopTime.AddMilliseconds(Config.MS_PER_TICK);
                 }
-
-                /* if (loopTime > DateTime.Now)
-                 {
-                     Thread.Sleep(loopTime - DateTime.Now);
-                 }*/
             }
         }
     }
