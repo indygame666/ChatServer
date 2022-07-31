@@ -33,7 +33,7 @@ namespace DedicatedServer
 
         }
 
-        public static void ReceiveChatMessage(Packet packet)
+        public static void ReceiveChatMessage(int clientID, Packet packet)
         {
             string nickName = packet.ReadString();
             int colorID = packet.ReadInt();
